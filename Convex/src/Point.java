@@ -1,6 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.lang.management.GarbageCollectorMXBean;
 
 // Класс "одноугольник", реализующий интерфейс фигуры.
 class Point implements Figure {
@@ -18,16 +16,13 @@ class Point implements Figure {
         if (!R2Point.equal(p,q)) return new Segment(p, q);
         else return this;
     }
-
-    public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        R2Point R1 = p;
-        Shape l = new Line2D.Double(1,1,10,10);
-        g2.draw(l);
-        return;
+    public void draw(Graphics g){
+        g.fillOval((int)(p.getX() -4 ), (int)(p.getY()-4),8,8);
     }
 
+    @Override
+    public int check(R2Point point1) {
+        return 0;
+    }
 }
 

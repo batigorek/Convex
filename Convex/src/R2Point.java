@@ -40,4 +40,14 @@ class R2Point {
         double s = area(a, b, this);
         return s < 0.0 || (s == 0.0 && !inside(a, b));
     }
+
+    int getX() {
+        return (int)this.x;
+    }
+
+    int getY(){
+        return (int)this.y;
+    }
+
+
 }

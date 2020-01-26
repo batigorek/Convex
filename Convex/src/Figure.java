@@ -4,5 +4,7 @@ public interface Figure {
     public double perimeter();
     public double area();
     public Figure add(R2Point p);
-    void draw(Graphics g);
+    public  void draw(Graphics g);
+
+    public int check(R2Point point1);
 }

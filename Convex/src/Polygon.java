@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Line2D;
 
 class Polygon extends Deq implements Figure {
         private double s, p;
@@ -47,13 +46,23 @@ class Polygon extends Deq implements Figure {
             }
             return this;
         }
-    public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    public int check(R2Point t) {
+        int i;
+// Ищем освещенные ребра, просматривая их одно за другим.
+        for (i=length(); i>0 && !t.light(back(),front()); i--)
+            pushBack(popFront());
+// УТВЕРЖДЕНИЕ: либо ребро [back(),front()] освещено из t,
+// либо освещенных ребер нет совсем.
+        return i;
+    }
+    public void draw(Graphics g){
+        g.fillOval((int)(front().getX() -4 ), (int)(front().getY()-4),8,8);
+        g.drawLine((int)(front().getX()), (int)(front().getY()), (int)(back().getX()), (int)(back().getY()));
+        pushFront(popBack());
+        g.setColor(Color.blue);
+        //g.drawRect(minX , minY , maxX-minX ,maxY-minY);
+        //g.setColor(Color.black);
+    }
 
-        Shape l = new Line2D.Double(1,1,10,10);
-        g2.draw(l);
-        return;
-    }
-    }
+}
 

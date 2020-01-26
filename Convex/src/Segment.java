@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Line2D;
 
 // Класс "двуугольник", реализующий интерфейс фигуры.
 class Segment implements Figure {
@@ -20,13 +19,14 @@ class Segment implements Figure {
         if (p.inside(r, q)) p = r;
         return this;
     }
-    public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    public void draw(Graphics g){
+        g.fillOval((int)(p.getX() -4 ), (int)(p.getY()-4),8,8);
+        g.drawLine((int)p.getX(), (int)p.getY(), (int)q.getX(), (int)q.getY());
+        g.fillOval((int)(q.getX() -4 ), (int)(q.getY()-4),8,8);
+    }
 
-        R2Point R1 = p;
-        Shape l = new Line2D.Double(1,1,10,10);
-        g2.draw(l);
-        return;
+    @Override
+    public int check(R2Point point1) {
+        return 0;
     }
 }
